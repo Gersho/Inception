@@ -4,3 +4,55 @@ services:
   nginx:
     build: ./nginx
     container_name: "inception_nginx"
+    ports:
+      - "443:443"
+    networks:
+      - default
+    restart: always
+    environment:
+      - DOMAIN_NAME=kzennoun.42.fr
+      - VIRTUAL_PORT=443
+      - VIRTUAL_HOST=kzennoun.42.fr
+    #  - front-network
+    #  - back-network
+
+
+networks:
+  default:
+    external:
+      name: inception
+
+
+
+
+
+    #services:
+    #depends_on:
+    #build:
+    #networks:
+    #image:
+    #container_name:
+    #environment:
+    #volumes:
+    #restart: unless-stopped ? always ?
+    #driver: local
+    #driver_opts:
+    #  type: none
+    #  device:
+    #  o: bind
+
+
+# networks:
+#   front-network:
+#     external:
+#       name: inception_entrance
+#   back-network:
+#     driver: bridge
+
+
+# networks:
+#   front-network:
+#     driver: bridge
+#   back-network:
+#     driver: bridge
+

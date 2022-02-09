@@ -12,6 +12,7 @@ RUN mkdir /etc/nginx/certificate \
 
 #COPY ./data .
 COPY		data/nginx.sh nginx.sh
+RUN			rm -f /etc/nginx/nginx.conf
 COPY		data/nginx.conf /etc/nginx/nginx.conf
 COPY		data/index.html /var/www/html/index.html
 

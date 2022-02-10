@@ -2,8 +2,8 @@ version: "3.7"
 
 services:
   nginx:
-    depends_on: 
-      - wordpress
+    # depends_on: 
+    #   - wordpress
     build: ./nginx
     container_name: "inception_nginx"
     ports:
@@ -14,36 +14,36 @@ services:
       - DOMAIN_NAME=${DOMAIN_NAME}
     restart: always
 
-  wordpress:
-    depends_on: 
-     - mariadb
-    build: ./wordpress
-    container_name: "inception_wordpress"
-    networks:
-     - inception_network
-    volumes:
-     - wordpress_website:/var/inception_wordpress/wordpress
-    environment:
-      - SQL_NAME=${SQL_NAME}
-      - SQL_USER=${SQL_USER}
-      - SQL_PASS=${SQL_PASS}
-      - SQL_HOST=${SQL_HOST}
-    restart: always
+  # wordpress:
+  #   depends_on: 
+  #    - mariadb
+  #   build: ./wordpress
+  #   container_name: "inception_wordpress"
+  #   networks:
+  #    - inception_network
+  #   volumes:
+  #    - wordpress_website:/var/inception_wordpress/wordpress
+  #   environment:
+  #     - SQL_NAME=${SQL_NAME}
+  #     - SQL_USER=${SQL_USER}
+  #     - SQL_PASS=${SQL_PASS}
+  #     - SQL_HOST=${SQL_HOST}
+  #   restart: always
 
-  mariadb:
-    build: ./mariadb
-    container_name: "inception_mariadb"
-    networks:
-      - inception_network
-    volumes:
-    - wordpress_database:/var/lib/mysql
-    environment:
-      - SQL_NAME=${SQL_NAME}
-      - SQL_USER=${SQL_USER}
-      - SQL_PASS=${SQL_PASS}
-      - SQL_HOST=${SQL_HOST}
-      - SQL_ROOTPASS=${SQL_ROOTPASS}
-    restart: always
+  # mariadb:
+  #   build: ./mariadb
+  #   container_name: "inception_mariadb"
+  #   networks:
+  #     - inception_network
+  #   volumes:
+  #   - wordpress_database:/var/lib/mysql
+  #   environment:
+  #     - SQL_NAME=${SQL_NAME}
+  #     - SQL_USER=${SQL_USER}
+  #     - SQL_PASS=${SQL_PASS}
+  #     - SQL_HOST=${SQL_HOST}
+  #     - SQL_ROOTPASS=${SQL_ROOTPASS}
+  #   restart: always
 
 
 

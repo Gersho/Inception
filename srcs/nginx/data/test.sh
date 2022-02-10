@@ -2,7 +2,7 @@ rm -f default
 touch default
 echo "
 server {
-	
+
 	listen 443 ssl default_server;
 	listen [::]:443 ssl default_server;
 	ssl_protocols TLSv1.3 TLSv1.2;
@@ -20,11 +20,6 @@ server {
 
 	location / {
 		try_files \$uri \$uri/ =404;
-	}
-
-	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass wordpress:9000;
 	}
 }
 

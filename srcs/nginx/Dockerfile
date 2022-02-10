@@ -3,7 +3,6 @@ FROM debian:latest
 
 WORKDIR /tmp/inception/nginx
 
-COPY ./data .
 
 RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install nginx openssl -y \
@@ -12,11 +11,18 @@ RUN apt-get update && apt-get upgrade -y \
 	# && chown -R www-data:www-data /var/www/html \
 	# && chmod 755 /var/www/html \
 
-RUN sh build_nginx_conf.sh \
-	&& rm -f /etc/nginx/sites-available/default \
-	&& cp default /etc/nginx/sites-available/default
+COPY ./data .
+
+
+# RUN sh build_nginx_conf.sh \
+# 	&& rm -f /etc/nginx/sites-available/default \
+# 	&& cp default /etc/nginx/sites-available/default
 
 #cleaning tmp
-RUN rm -rf /tmp/inception/nginx
+#RUN rm -rf /tmp/inception/nginx
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+#CMD sleep infinity
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["sh", "build_nginx_conf.sh"]
+#ENTRYPOINT ["sh", "test.sh"]

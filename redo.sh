@@ -1,0 +1,2 @@
+docker volume rm wordpress_database
+docker volume rm wordpress_website

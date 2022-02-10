@@ -1,0 +1,13 @@
+TODO:
+
+make it work !
+
+change debian version in dockerfiles
+check/fix wp-config build with env in docker
+
+configure mariadb
+configure wp
+
+volume not working for mariadb but working for wordpress ?_?
+
+remove nginx2 and wp-config2

@@ -1,28 +1,73 @@
-version: "3"
+version: "3.7"
 
 services:
   nginx:
+    depends_on: 
+      - wordpress
     build: ./nginx
     container_name: "inception_nginx"
     ports:
       - "443:443"
     networks:
-      - default
-    restart: always
+      - inception_network
     environment:
-      - DOMAIN_NAME=kzennoun.42.fr
-      - VIRTUAL_PORT=443
-      - VIRTUAL_HOST=kzennoun.42.fr
-    #  - front-network
-    #  - back-network
+      - DOMAIN_NAME=${DOMAIN_NAME}
+    restart: always
+
+  wordpress:
+    depends_on: 
+     - mariadb
+    build: ./wordpress
+    container_name: "inception_wordpress"
+    networks:
+     - inception_network
+    volumes:
+     - wordpress_website:/var/inception_wordpress/wordpress
+    environment:
+      - SQL_NAME=${SQL_NAME}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASS=${SQL_PASS}
+      - SQL_HOST=${SQL_HOST}
+    restart: always
+
+  mariadb:
+    build: ./mariadb
+    container_name: "inception_mariadb"
+    networks:
+      - inception_network
+    volumes:
+    - wordpress_database:/var/lib/mysql
+    environment:
+      - SQL_NAME=${SQL_NAME}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASS=${SQL_PASS}
+      - SQL_HOST=${SQL_HOST}
+      - SQL_ROOTPASS=${SQL_ROOTPASS}
+    restart: always
+
 
 
 networks:
-  default:
-    external:
-      name: inception
+  inception_network:
+      name: inception_network
 
 
+volumes:
+  wordpress_website:
+    name: wordpress_website
+    driver: local
+    driver_opts:
+      device: /usr/inception_volumes/wordpress_website
+      o: bind
+      type: none
+
+  wordpress_database:
+    name: wordpress_database
+    driver: local
+    driver_opts:
+      device: /usr/inception_volumes/wordpress_database
+      o: bind
+      type: none
 
 
 

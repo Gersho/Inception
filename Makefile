@@ -1,4 +1,6 @@
 
+mkdir volumes folder ?
+
 #create network
 docker network create inception
 

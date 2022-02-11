@@ -10,21 +10,23 @@ services:
       - "443:443"
     networks:
       - inception_network
+    volumes:
+     - wordpress_website:/var/inception_wordpress/wordpress
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
     restart: always
 
   wordpress:
-    # depends_on: 
-    #  - mariadb
+    depends_on: 
+     - mariadb
     build: ./wordpress
     container_name: "inception_wordpress"
     ports:
       - 9000:9000
     networks:
      - inception_network
-    # volumes:
-    #  - wordpress_website:/var/inception_wordpress/wordpress
+    volumes:
+     - wordpress_website:/var/inception_wordpress/wordpress
     environment:
       - SQL_NAME=${SQL_NAME}
       - SQL_USER=${SQL_USER}
@@ -32,20 +34,20 @@ services:
       - SQL_HOST=${SQL_HOST}
     restart: always
 
-  # mariadb:
-  #   build: ./mariadb
-  #   container_name: "inception_mariadb"
-  #   networks:
-  #     - inception_network
-  #   volumes:
-  #   - wordpress_database:/var/lib/mysql
-  #   environment:
-  #     - SQL_NAME=${SQL_NAME}
-  #     - SQL_USER=${SQL_USER}
-  #     - SQL_PASS=${SQL_PASS}
-  #     - SQL_HOST=${SQL_HOST}
-  #     - SQL_ROOTPASS=${SQL_ROOTPASS}
-  #   restart: always
+  mariadb:
+    build: ./mariadb
+    container_name: "inception_mariadb"
+    networks:
+      - inception_network
+    volumes:
+    - wordpress_database:/var/lib/mysql
+    environment:
+      - SQL_NAME=${SQL_NAME}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASS=${SQL_PASS}
+      - SQL_HOST=${SQL_HOST}
+      - SQL_ROOTPASS=${SQL_ROOTPASS}
+    restart: always
 
 
 
@@ -59,7 +61,7 @@ volumes:
     name: wordpress_website
     driver: local
     driver_opts:
-      device: home/karim/inception_volumes/wordpress_website
+      device: /Users/kzennoun/inception_volumes/wordpress_website
       o: bind
       type: none
 
@@ -67,7 +69,7 @@ volumes:
     name: wordpress_database
     driver: local
     driver_opts:
-      device: home/karim/inception_volumes/wordpress_database
+      device: /Users/kzennoun/inception_volumes/wordpress_database
       o: bind
       type: none
 

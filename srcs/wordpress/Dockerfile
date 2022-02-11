@@ -19,4 +19,5 @@ RUN mkdir /var/inception_wordpress \
 #cleaning tmp
 RUN rm -rf /tmp/inception/wordpress
 
-CMD echo "wordpress dockerfile"
+#CMD echo "wordpress dockerfile"
+CMD sleep infinity

@@ -12,7 +12,7 @@ server {
 	ssl_certificate_key  /etc/nginx/certificate/nginx.key;
 
 
-	root /var/www/html/;
+	root /var/inception_/;
 
 	index index.html index.htm index.php index.nginx-debian.html;
 

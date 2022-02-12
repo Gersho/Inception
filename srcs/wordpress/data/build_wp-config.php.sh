@@ -20,7 +20,7 @@ define( 'NONCE_SALT',       'Fwxu}.uHfd+P@l/uveeNdvUwVLkABd5@IGdsvsd(IjHGfJ6:Cap
 
 \$table_prefix = 'wp_';
 
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
@@ -31,3 +31,8 @@ require_once ABSPATH . 'wp-settings.php';
 
 
 " >> wp-config.php
+ls
+pwd
+cp wp-config.php /var/inception_wordpress/wordpress/
+chown -R www-data:www-data /var/inception_wordpress/wordpress
+sleep infinity

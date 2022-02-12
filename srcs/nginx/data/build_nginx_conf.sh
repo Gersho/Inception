@@ -11,8 +11,7 @@ server {
 	ssl_certificate /etc/nginx/certificate/nginx-certificate.crt;
 	ssl_certificate_key  /etc/nginx/certificate/nginx.key;
 
-
-	root /var/inception_/;
+	root /var/inception_wordpress/wordpress;
 
 	index index.html index.htm index.php index.nginx-debian.html;
 
@@ -31,5 +30,5 @@ server {
 " >> default
 rm -f /etc/nginx/sites-available/default
 cp default /etc/nginx/sites-available/default
-
+chown -R www-data:www-data /var/inception_wordpress/wordpress
 nginx -g 'daemon off;'

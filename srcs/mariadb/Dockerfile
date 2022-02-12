@@ -12,4 +12,4 @@ RUN apt-get update && apt-get upgrade -y \
 RUN rm -rf /tmp/inception/wordpress
 
 #CMD echo "mariadb dockefile"
-CMD sleep infinity
+CMD sh sql_build.sh

@@ -13,6 +13,13 @@ remove DEBUG MODE wordpress
 remove junk files
 
 
+delete env in containers
+remove nano from containers
+
+
+
+OPTI ?  faire apt get update en premier dans tt les containers pour avoir une cached version
+
 
 
 package list
@@ -154,3 +161,33 @@ All done!  If you've completed all of the above steps, your MariaDB
 installation should now be secure.
 
 Thanks for using MariaDB!
+
+
+docker stop $(docker ps -qa)
+docker rm $(docker ps -qa)
+docker rmi -f $(docker images -qa)
+docker network rm $(docker network ls -q) 2>/dev/null
+
+	docker rm inception_nginx
+	docker rm inception_wordpress
+	docker rm inception_mariadb
+
+
+
+	fclean
+		docker stop inception_nginx
+	docker stop inception_wordpress
+	docker stop inception_mariadb
+	docker rmi srcs_nginx
+	docker rmi srcs_wordpress
+	docker rmi srcs_mariadb
+	docker system prune -f
+
+
+
+		$(docker ps -a | grep inception_nginx) && docker stop inception_nginx
+	$(docker ps -a | grep inception_wordpress) && docker stop inception_wordpress
+	$(docker ps -a | grep inception_mariadb) && docker stop inception_mariadb
+	$(docker images | grep srcs_nginx) && docker rmi srcs_nginx
+	$(docker images | grep srcs_wordpress) && docker rmi srcs_wordpress
+	$(docker images | grep srcs_mariadb) && docker rmi srcs_mariadb

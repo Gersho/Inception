@@ -1,12 +1,14 @@
 #change before push
 FROM debian:latest
 
+RUN apt-get update && apt-get upgrade -y
+
+
 WORKDIR /tmp/inception/nginx
 
+RUN apt-get install nginx openssl nano -y
 
-RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install nginx openssl -y \
-	&& mkdir /etc/nginx/certificate \
+RUN mkdir /etc/nginx/certificate \
 	&& openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.kzennoun.42.fr" -out /etc/nginx/certificate/nginx-certificate.crt -keyout /etc/nginx/certificate/nginx.key 
 	# && chown -R www-data:www-data /var/www/html \
 	# && chmod 755 /var/www/html \

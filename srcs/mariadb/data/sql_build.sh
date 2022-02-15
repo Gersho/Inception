@@ -1,10 +1,10 @@
 rm -rf basics.sql
 touch basics.sql
 echo "GRANT ALL ON *.* TO 'sqlroot'@'localhost' IDENTIFIED BY '$SQL_ROOTPASS';
-IF DB_ID('wordpress_db') IS NOT NULL
+IF DB_ID('$SQL_NAME') IS NOT NULL
 BEGIN
-	CREATE DATABASE wordpress_db;
-	GRANT ALL ON wordpress_db.* TO 'wordpress_user'@'localhost' IDENTIFIED BY 'password';
+	CREATE DATABASE $SQL_NAME;
+	GRANT ALL ON $SQL_NAME.* TO '$SQL_USER'@'localhost' IDENTIFIED BY '$SQL_PASS';
 END
 FLUSH PRIVILEGES;" >> basics.sql
 

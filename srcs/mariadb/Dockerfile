@@ -1,11 +1,12 @@
 #change before push
 FROM debian:latest
 
+
+RUN apt-get update && apt-get upgrade -y
+
 WORKDIR /tmp/inception/mariadb
 
-
-RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install mariadb-server expect nano -y
+RUN apt-get install mariadb-server expect nano -y
 
 COPY ./data .
 #cleaning tmp

@@ -1,11 +1,12 @@
 #change before push
 FROM debian:latest
 
+
+RUN apt-get update && apt-get upgrade -y
+
 WORKDIR /tmp/inception/wordpress
 
-
-RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install php-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi -y 
+RUN apt-get install php-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi nano -y 
 
 COPY ./data .
 

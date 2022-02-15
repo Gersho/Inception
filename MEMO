@@ -4,14 +4,15 @@ make it work !
 
 change debian version in dockerfiles
 check/fix wp-config build with env in docker
-
+autoindex nginx off
+index.php fix
 configure mariadb
 configure wp
 remove DEBUG MODE wordpress
 
 
 remove junk files
-
+check files for paths working from home
 
 delete env in containers
 remove nano from containers

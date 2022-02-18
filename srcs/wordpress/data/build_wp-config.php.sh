@@ -5,7 +5,7 @@ echo "<?php
 define( 'DB_NAME', '$SQL_NAME' );
 define( 'DB_USER', '$SQL_USER' );
 define( 'DB_PASSWORD', '$SQL_PASS' );
-define( 'DB_HOST', '$SQL_HOST' );
+define( 'DB_HOST', '$SQL_HOST:3306' );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
@@ -31,11 +31,30 @@ require_once ABSPATH . 'wp-settings.php';
 
 
 " >> wp-config.php
+
+rm -f www.conf
+touch www.conf
+echo "
+[www]
+user = www-data
+group = www-data
+listen = wordpress:9000
+listen.owner = www-data
+listen.group = www-data
+pm = dynamic
+pm.max_children = 5
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 3
+" >> www.conf
+
 rm -f /var/inception_wordpress/wordpress/wp-config.php
 cp wp-config.php /var/inception_wordpress/wordpress/
-rm -f /var/inception_wordpress/wordpress/index.php
-cp index.php /var/inception_wordpress/wordpress
+rm -f /etc/php/7.3/fpm/pool.d/www.conf
+cp www.conf /etc/php/7.3/fpm/pool.d/
+#rm -f /var/inception_wordpress/wordpress/index.php
+#cp index.php /var/inception_wordpress/wordpress
 #chown -R www-data:www-data /var/inception_wordpress/wordpress
-chmod -R 777 /var/inception_wordpress 
+#chmod -R 777 /var/inception_wordpress 
 service php7.3-fpm start
 sleep infinity

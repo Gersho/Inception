@@ -1,42 +1,24 @@
 rm -rf basics.sql
 touch basics.sql
-echo "GRANT ALL ON *.* TO 'sqlroot'@'localhost' IDENTIFIED BY '$SQL_ROOTPASS';
-IF DB_ID('$SQL_NAME') IS NOT NULL
-BEGIN
-	CREATE DATABASE $SQL_NAME;
-	GRANT ALL ON $SQL_NAME.* TO '$SQL_USER'@'localhost' IDENTIFIED BY '$SQL_PASS';
-END
+echo "CREATE USER IF NOT EXISTS '$SQL_USER'@'localhost' IDENTIFIED BY '$SQL_PASS';
+FLUSH PRIVILEGES;
+CREATE DATABASE IF NOT EXISTS $SQL_NAME;
+GRANT ALL ON $SQL_NAME.* TO '$SQL_USER'@'localhost' IDENTIFIED BY '$SQL_PASS';
+GRANT ALL ON *.* TO 'root'@'localhost';
 FLUSH PRIVILEGES;" >> basics.sql
 
-rm -rf mysql_install.sh
-touch mysql_install.sh
+rm -rf basics2.sql
+touch basics2.sql
 
-echo "SECURE_MYSQL=\$(expect -c \"
-set timeout 10
-spawn mysql_secure_installation
-expect \\\"Enter current password for root (enter for none):\\\"
-send \\\"\\\\r\\\"
-expect \\\"Switch to unix_socket authentication \[Y/n\]\\\"
-send \\\"n\\\\r\\\"
-expect \\\"Change the root password?\\\"
-send \\\"n\\\\r\\\"
-expect \\\"Remove anonymous users?\\\"
-send \\\"y\\\\r\\\"
-expect \\\"Disallow root login remotely?\\\"
-send \\\"y\\\\r\\\"
-expect \\\"Remove test database and access to it?\\\"
-send \\\"y\\\\r\\\"
-expect \\\"Reload privilege tables now?\\\"
-send \\\"y\\\\r\\\"
-expect eof
-\")
-
-echo \"\$SECURE_MYSQL\"" >> mysql_install.sh
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_ROOTPASS';
+FLUSH PRIVILEGES;
+" >> basics2.sql
 
 
-# service mariadb start
-# sh mysql_install.sh
+service mysql start
+echo "coucou"
 # mysql -u root < basics.sql
-
+# mysql -u root < basics2.sql
 
 sleep infinity
+

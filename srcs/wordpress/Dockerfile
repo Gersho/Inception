@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 
 WORKDIR /tmp/inception/wordpress
 
-RUN apt-get install php-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi nano -y 
+RUN apt-get install php7.3-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi nano -y 
 
 COPY ./data .
 

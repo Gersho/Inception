@@ -36,5 +36,6 @@ cp wp-config.php /var/inception_wordpress/wordpress/
 rm -f /var/inception_wordpress/wordpress/index.php
 cp index.php /var/inception_wordpress/wordpress
 #chown -R www-data:www-data /var/inception_wordpress/wordpress
-service php7.4-fpm start
+chmod -R 777 /var/inception_wordpress 
+service php7.3-fpm start
 sleep infinity

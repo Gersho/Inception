@@ -5,7 +5,7 @@ services:
     depends_on: 
       - wordpress
     build: ./nginx
-    container_name: "inception_nginx"
+    container_name: "nginx"
     ports:
       - "443:443"
     networks:
@@ -20,7 +20,7 @@ services:
     depends_on: 
      - mariadb
     build: ./wordpress
-    container_name: "inception_wordpress"
+    container_name: "wordpress"
     ports:
       - 9000:9000
     networks:
@@ -36,7 +36,7 @@ services:
 
   mariadb:
     build: ./mariadb
-    container_name: "inception_mariadb"
+    container_name: "mariadb"
     ports:
       - 3306:3306
     networks:
@@ -63,8 +63,8 @@ volumes:
     name: wordpress_website
     driver: local
     driver_opts:
-     # device: /Users/kzennoun/inception_volumes/wordpress_website
-      device: /home/karim/inception_volumes/wordpress_website
+      device: /Users/kzennoun/inception_volumes/wordpress_website
+      #device: /home/karim/inception_volumes/wordpress_website
       o: bind
       type: none
 
@@ -72,8 +72,8 @@ volumes:
     name: wordpress_database
     driver: local
     driver_opts:
-      #device: /Users/kzennoun/inception_volumes/wordpress_database
-      device: /home/karim/inception_volumes/wordpress_database
+      device: /Users/kzennoun/inception_volumes/wordpress_database
+      #device: /home/karim/inception_volumes/wordpress_database
       o: bind
       type: none
 

@@ -2,6 +2,10 @@ TODO:
 
 make it work !
 
+
+
+https://wp-cli.org/fr/
+
 change debian version in dockerfiles
 check/fix wp-config build with env in docker
 autoindex nginx off

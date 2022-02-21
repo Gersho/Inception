@@ -29,7 +29,7 @@ FLUSH PRIVILEGES;
 # FLUSH PRIVILEGES;
 # " >> basics2.sql
 
-
+mysqladmin -u root password "$SQL_ROOTPASS"
 
 
 service mysql start
@@ -38,5 +38,5 @@ mysql -u root < basics.sql
 echo "print 2"
 # mysql -u root < basics2.sql
 echo "print 3"
-sleep infinity
-#mysqld_safe
+#sleep infinity
+mysqld_safe

@@ -1,12 +1,12 @@
-rm -rf .my.cnf
-touch .my.cnf
+rm -rf 51.cnf
+touch 51.cnf
 echo "[mysqld]
 skip-networking=0
 bind-address = 0.0.0.0
-" >> .my.cnf
+" >> 51.cnf
 
 echo "print"
-cp .my.cnf /root
+cp 51.cnf /etc/mysql/mariadb.conf.d/
 echo "print 0"
 
 
@@ -38,5 +38,5 @@ mysql -u root < basics.sql
 echo "print 2"
 # mysql -u root < basics2.sql
 echo "print 3"
-#sleep infinity
-mysqld_safe
+sleep infinity
+#mysqld_safe

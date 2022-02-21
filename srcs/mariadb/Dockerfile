@@ -7,7 +7,7 @@ RUN apt-get update && apt-get upgrade -y
 
 WORKDIR /tmp/inception/mariadb
 
-RUN apt-get install mariadb-server expect nano -y
+RUN apt-get install mariadb-server procps expect nano -y
 
 COPY ./data .
 #cleaning tmp

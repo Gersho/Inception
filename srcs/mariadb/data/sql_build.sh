@@ -28,15 +28,17 @@ FLUSH PRIVILEGES;
 # echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$SQL_ROOTPASS';
 # FLUSH PRIVILEGES;
 # " >> basics2.sql
+service mysql start
+
+mysql -u root < basics.sql
 
 mysqladmin -u root password "$SQL_ROOTPASS"
 
 
-service mysql start
 echo "print 1"
-mysql -u root < basics.sql
 echo "print 2"
 # mysql -u root < basics2.sql
 echo "print 3"
 #sleep infinity
+service mysql stop
 mysqld_safe

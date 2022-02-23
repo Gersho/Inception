@@ -57,7 +57,7 @@ echo "print 1"
 cd /var/inception_wordpress/wordpress
 wp core install --url=$DOMAIN_NAME --title="$WP_TITLE" --admin_user=$WP_ADMIN --admin_password=$WP_ADMINPASS --admin_email=$WP_ADMINMAIL --allow-root
 echo "print 2"
-#wp user create $WP_USER $WP_USERMAIL --user_pass=$WP_USERPASS --porcelain --allow-root
+wp user create $WP_USER $WP_USERMAIL --user_pass=$WP_USERPASS --porcelain --allow-root
 echo "print 3"
 #rm -f /var/inception_wordpress/wordpress/index.php
 #cp index.php /var/inception_wordpress/wordpress

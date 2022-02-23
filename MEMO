@@ -2,6 +2,8 @@ TODO:
 
 make it work !
 
+CHANGER DOMAIN NAME DANS .env
+
 Your volumes will be available in the /home/login/data folder of the
 host machine using Docker. Of course, you have to replace the login
 with yours.

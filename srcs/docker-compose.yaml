@@ -41,18 +41,19 @@ services:
     restart: always
 
   mariadb:
-    build: ./mariadb
+    build: 
+      context: ./mariadb
+      args:
+        SQL_NAME: ${SQL_NAME}
+        SQL_USER: ${SQL_USER}
+        SQL_PASS: ${SQL_PASS}
+        SQL_HOST: ${SQL_HOST}
+        SQL_ROOTPASS: ${SQL_ROOTPASS}
     container_name: "mariadb"
     networks:
       - inception_network
     volumes:
     - wordpress_database:/var/lib/mysql
-    environment:
-      - SQL_NAME=${SQL_NAME}
-      - SQL_USER=${SQL_USER}
-      - SQL_PASS=${SQL_PASS}
-      - SQL_HOST=${SQL_HOST}
-      - SQL_ROOTPASS=${SQL_ROOTPASS}
     restart: always
 
 

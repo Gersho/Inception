@@ -30,5 +30,4 @@ server {
 " >> default
 rm -f /etc/nginx/sites-available/default
 cp default /etc/nginx/sites-available/default
-chown -R www-data:www-data /var/inception_wordpress/wordpress
 nginx -g 'daemon off;'

@@ -81,35 +81,3 @@ volumes:
       o: bind
       type: none
 
-
-
-    #services:
-    #depends_on:
-    #build:
-    #networks:
-    #image:
-    #container_name:
-    #environment:
-    #volumes:
-    #restart: unless-stopped ? always ?
-    #driver: local
-    #driver_opts:
-    #  type: none
-    #  device:
-    #  o: bind
-
-
-# networks:
-#   front-network:
-#     external:
-#       name: inception_entrance
-#   back-network:
-#     driver: bridge
-
-
-# networks:
-#   front-network:
-#     driver: bridge
-#   back-network:
-#     driver: bridge
-

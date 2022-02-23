@@ -68,8 +68,9 @@ volumes:
     name: wordpress_website
     driver: local
     driver_opts:
-      device: /Users/kzennoun/inception_volumes/wordpress_website
+      #device: /Users/kzennoun/inception_volumes/wordpress_website
       #device: /home/karim/inception_volumes/wordpress_website
+      device: /home/kzennoun/inception_volumes/wordpress_website
       o: bind
       type: none
 
@@ -77,8 +78,9 @@ volumes:
     name: wordpress_database
     driver: local
     driver_opts:
-      device: /Users/kzennoun/inception_volumes/wordpress_database
+      #device: /Users/kzennoun/inception_volumes/wordpress_database
       #device: /home/karim/inception_volumes/wordpress_database
+      device: /home/kzennoun/inception_volumes/wordpress_website
       o: bind
       type: none
 

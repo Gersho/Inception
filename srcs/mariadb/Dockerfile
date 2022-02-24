@@ -1,14 +1,13 @@
 #change before push
 FROM debian:buster
 
-EXPOSE 3306
-
 RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install mariadb-server procps expect nano -y
 
 WORKDIR /tmp/inception/mariadb
 COPY ./data .
-
-RUN apt-get install mariadb-server procps expect nano -y
+EXPOSE 3306
 
 ARG SQL_NAME=$SQL_NAME
 ARG SQL_USER=$SQL_USER

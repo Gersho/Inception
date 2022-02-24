@@ -1,15 +1,13 @@
 #change before push
 FROM debian:buster
 
-EXPOSE 9000
-
 RUN apt-get update && apt-get upgrade -y
-
-WORKDIR /tmp/inception/wordpress
 
 RUN apt-get install php7.3-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi nano -y 
 
+WORKDIR /tmp/inception/wordpress
 COPY ./data .
+EXPOSE 9000
 
 RUN mkdir /var/inception_wordpress \
 	&& tar xzf wordpress-5.9.tar.gz -C /var/inception_wordpress \

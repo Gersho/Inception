@@ -80,7 +80,7 @@ volumes:
     driver_opts:
       #device: /Users/kzennoun/inception_volumes/wordpress_database
       #device: /home/karim/inception_volumes/wordpress_database
-      device: /home/kzennoun/inception_volumes/wordpress_website
+      device: /home/kzennoun/inception_volumes/wordpress_database
       o: bind
       type: none
 

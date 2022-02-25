@@ -11,7 +11,7 @@ ARG DOMAIN_NAME=$DOMAIN_NAME
 
 RUN mkdir -p /etc/nginx/certificate \
 	&& openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.kzennoun.42.fr" -out /etc/nginx/certificate/nginx-certificate.crt -keyout /etc/nginx/certificate/nginx.key \
-	&& sh build_nginx_config.sh \
+	&& sh build_config_nginx.sh \
 	&& rm -f /etc/nginx/sites-available/default \
 	&& cp default /etc/nginx/sites-available/default
 

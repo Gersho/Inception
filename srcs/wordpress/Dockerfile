@@ -20,6 +20,6 @@ RUN mkdir /var/inception_wordpress \
 
 RUN chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /bin/wp \
-	&& sh build_wp-config.php.sh
+	&& sh wp_build.sh
 
-CMD sh run.sh
+CMD sh wp_run.sh

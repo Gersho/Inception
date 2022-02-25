@@ -14,7 +14,7 @@ server {
 	index index.html index.htm index.php index.nginx-debian.html;
 	server_name $DOMAIN_NAME;
 	location / {
-		try_files \$uri /index.php\$is_args\$args;
+		try_files \$uri \$uri/ /index.php\$is_args\$args;
 	}
 	location ~ \.php$ {
         try_files \$uri =404;

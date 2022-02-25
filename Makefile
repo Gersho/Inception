@@ -1,5 +1,4 @@
-up: 
-	build
+up: build
 	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env up
 
 build:
@@ -10,9 +9,8 @@ build:
 down: 
 	docker-compose -f ./srcs/docker-compose.yaml --env-file ./srcs/.env down
 
-fclean : 
-	down
-	sh def.sh 2> /dev/null
+fclean : down
+	sh def.sh 2>/dev/null
 	docker system prune --volumes -af
 	rm -rf /home/kzennoun/data/inception_volumes
 

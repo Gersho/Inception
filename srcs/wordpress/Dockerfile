@@ -2,7 +2,7 @@ FROM debian:buster
 
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install php7.3-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi nano -y 
+RUN apt-get install php7.3-fpm php-mysql php-mbstring php-zip php-gd php-xml php-pear php-cgi -y 
 
 WORKDIR /tmp/inception/wordpress
 COPY ./data .

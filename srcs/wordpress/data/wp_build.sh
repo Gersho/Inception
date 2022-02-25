@@ -34,6 +34,7 @@ require_once ABSPATH . 'wp-settings.php';
 
 rm -f /var/inception_wordpress/wordpress/wp-config.php
 cp wp-config.php /var/inception_wordpress/wordpress/
+rm -f wp-config.php
 
 
 rm -f www.conf
@@ -54,5 +55,6 @@ pm.max_spare_servers = 3
 
 rm -f /etc/php/7.3/fpm/pool.d/www.conf
 cp www.conf /etc/php/7.3/fpm/pool.d/
+rm -f www.conf
 
 chown -R www-data:www-data /var/inception_wordpress/wordpress

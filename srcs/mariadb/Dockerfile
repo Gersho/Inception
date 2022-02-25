@@ -17,4 +17,7 @@ ARG SQL_ROOTPASS=$SQL_ROOTPASS
 RUN cp 51.cnf /etc/mysql/mariadb.conf.d/
 RUN sh sql_build.sh
 
+WORKDIR /
+RUN rm -rf /tmp/inception
+
 CMD mysqld

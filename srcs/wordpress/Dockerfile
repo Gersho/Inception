@@ -22,4 +22,7 @@ RUN chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /bin/wp \
 	&& sh wp_build.sh
 
+RUN rm -f wordpress-5.9.tar.gz \
+	&& rm -f wp-cli.phar
+
 CMD sh wp_run.sh

@@ -15,4 +15,7 @@ RUN mkdir -p /etc/nginx/certificate \
 	&& rm -f /etc/nginx/sites-available/default \
 	&& cp default /etc/nginx/sites-available/default
 
+WORKDIR /
+RUN rm -rf /tmp/inception
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

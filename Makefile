@@ -14,4 +14,4 @@ fclean : down
 	docker system prune --volumes -af
 	rm -rf /home/kzennoun/data/inception_volumes
 
-re: fclean run
+re: fclean up

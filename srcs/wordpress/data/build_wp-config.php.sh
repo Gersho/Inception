@@ -1,7 +1,3 @@
-#if
-if [ -f "/var/inception_wordpress/wordpress/wp-config-sample.php" ]; 
-then
-
 rm -f wp-config.php
 touch wp-config.php
 echo "<?php
@@ -59,22 +55,4 @@ pm.max_spare_servers = 3
 rm -f /etc/php/7.3/fpm/pool.d/www.conf
 cp www.conf /etc/php/7.3/fpm/pool.d/
 
-service php7.3-fpm start
-echo "print 1"
-cd /var/inception_wordpress/wordpress
-wp core install --url=$DOMAIN_NAME --title="$WP_TITLE" --admin_user=$WP_ADMIN --admin_password=$WP_ADMINPASS --admin_email=$WP_ADMINMAIL --skip-email --allow-root
-echo "print 2"
-wp user create $WP_USER $WP_USERMAIL --user_pass=$WP_USERPASS --porcelain --allow-root
-echo "print 3"
-wp option set siteurl $DOMAIN_NAME --allow-root
-
-service php7.3-fpm stop
-
-rm -f /var/inception_wordpress/wordpress/wp-config-sample.php
 chown -R www-data:www-data /var/inception_wordpress/wordpress
-
-fi
-#endif
-
-echo "print 4"
-php-fpm7.3 -F -R

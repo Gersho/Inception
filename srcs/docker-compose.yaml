@@ -4,7 +4,10 @@ services:
   nginx:
     depends_on: 
       - wordpress
-    build: ./nginx
+    build:
+      context: ./nginx
+      args:
+        DOMAIN_NAME: ${DOMAIN_NAME}
     container_name: "nginx"
     ports:
       - "443:443"
@@ -12,24 +15,20 @@ services:
       - inception_network
     volumes:
      - wordpress_website:/var/inception_wordpress/wordpress
-    environment:
-      - DOMAIN_NAME=${DOMAIN_NAME}
     restart: always
 
   wordpress:
     depends_on: 
      - mariadb
-    build: ./wordpress
+    build:
+      context: ./wordpress
+      args:
+        SQL_NAME: ${SQL_NAME}
+        SQL_USER: ${SQL_USER}
+        SQL_PASS: ${SQL_PASS}
+        SQL_HOST: ${SQL_HOST}
     container_name: "wordpress"
-    networks:
-     - inception_network
-    volumes:
-     - wordpress_website:/var/inception_wordpress/wordpress
     environment:
-      - SQL_NAME=${SQL_NAME}
-      - SQL_USER=${SQL_USER}
-      - SQL_PASS=${SQL_PASS}
-      - SQL_HOST=${SQL_HOST}
       - DOMAIN_NAME=${DOMAIN_NAME}
       - WP_ADMIN=${WP_ADMIN}
       - WP_ADMINPASS=${WP_ADMINPASS}
@@ -38,6 +37,10 @@ services:
       - WP_USERPASS=${WP_USERPASS}
       - WP_USERMAIL=${WP_USERMAIL}
       - WP_TITLE=${WP_TITLE}
+    networks:
+     - inception_network
+    volumes:
+     - wordpress_website:/var/inception_wordpress/wordpress
     restart: always
 
   mariadb:
@@ -69,8 +72,8 @@ volumes:
     driver: local
     driver_opts:
       #device: /Users/kzennoun/inception_volumes/wordpress_website
-      #device: /home/karim/inception_volumes/wordpress_website
-      device: /home/kzennoun/data/inception_volumes/wordpress_website
+      device: /home/karim/data/inception_volumes/wordpress_website
+      #device: /home/kzennoun/data/inception_volumes/wordpress_website
       o: bind
       type: none
 
@@ -79,8 +82,8 @@ volumes:
     driver: local
     driver_opts:
       #device: /Users/kzennoun/inception_volumes/wordpress_database
-      #device: /home/karim/inception_volumes/wordpress_database
-      device: /home/kzennoun/data/inception_volumes/wordpress_database
+      device: /home/karim/data/inception_volumes/wordpress_database
+      #device: /home/kzennoun/data/inception_volumes/wordpress_database
       o: bind
       type: none
 

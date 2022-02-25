@@ -1,4 +1,3 @@
-#change before push
 FROM debian:buster
 
 RUN apt-get update && apt-get upgrade -y
@@ -8,22 +7,11 @@ RUN apt-get install nginx openssl nano -y
 WORKDIR /tmp/inception/nginx
 COPY ./data .
 
-RUN mkdir /etc/nginx/certificate \
-	&& openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.kzennoun.42.fr" -out /etc/nginx/certificate/nginx-certificate.crt -keyout /etc/nginx/certificate/nginx.key 
-	# && chown -R www-data:www-data /var/www/html \
-	# && chmod 755 /var/www/html \
+ARG DOMAIN_NAME=$DOMAIN_NAME
 
+RUN mkdir -p /etc/nginx/certificate \
+	&& openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.kzennoun.42.fr" -out /etc/nginx/certificate/nginx-certificate.crt -keyout /etc/nginx/certificate/nginx.key \
+	&& rm -f /etc/nginx/sites-available/default \
+	&& cp default /etc/nginx/sites-available/default
 
-
-# RUN sh build_nginx_conf.sh \
-# 	&& rm -f /etc/nginx/sites-available/default \
-# 	&& cp default /etc/nginx/sites-available/default
-
-#cleaning tmp
-#RUN rm -rf /tmp/inception/nginx
-
-
-#CMD sleep infinity
-#ENTRYPOINT ["nginx", "-g", "daemon off;"]
-ENTRYPOINT ["sh", "build_nginx_conf.sh"]
-#ENTRYPOINT ["sh", "test.sh"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

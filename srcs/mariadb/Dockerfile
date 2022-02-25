@@ -1,4 +1,3 @@
-#change before push
 FROM debian:buster
 
 RUN apt-get update && apt-get upgrade -y
@@ -17,8 +16,4 @@ ARG SQL_HOST=$SQL_HOST
 RUN cp 51.cnf /etc/mysql/mariadb.conf.d/
 RUN sh sql_build.sh
 
-#cleaning tmp
-#RUN rm -rf /tmp/inception/mariadb
-
-#CMD echo "mariadb dockefile"
-CMD mysqld_safe
+CMD mysqld

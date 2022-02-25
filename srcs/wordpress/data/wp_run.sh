@@ -1,7 +1,7 @@
 if [ -f "/var/inception_wordpress/wordpress/wp-config-sample.php" ]; 
 then
 
-echo "Please wait while wordpress if finalizing installation"
+echo "Please wait while wordpress is finalizing installation"
 service php7.3-fpm start
 cd /var/inception_wordpress/wordpress
 wp core install --url=$DOMAIN_NAME --title="$WP_TITLE" --admin_user=$WP_ADMIN --admin_password=$WP_ADMINPASS --admin_email=$WP_ADMINMAIL --skip-email --allow-root
@@ -22,5 +22,5 @@ unset WP_USER
 unset WP_USERPASS
 unset WP_USERMAIL
 unset WP_TITLE 
-echo "Please wait while wordpress if finalizing installation"
+echo "Wordpress installation done"
 php-fpm7.3 -F -R

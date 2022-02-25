@@ -72,8 +72,8 @@ volumes:
     driver: local
     driver_opts:
       #device: /Users/kzennoun/inception_volumes/wordpress_website
-      device: /home/karim/data/inception_volumes/wordpress_website
-      #device: /home/kzennoun/data/inception_volumes/wordpress_website
+      #device: /home/karim/data/inception_volumes/wordpress_website
+      device: /home/kzennoun/data/inception_volumes/wordpress_website
       o: bind
       type: none
 
@@ -82,8 +82,8 @@ volumes:
     driver: local
     driver_opts:
       #device: /Users/kzennoun/inception_volumes/wordpress_database
-      device: /home/karim/data/inception_volumes/wordpress_database
-      #device: /home/kzennoun/data/inception_volumes/wordpress_database
+      #device: /home/karim/data/inception_volumes/wordpress_database
+      device: /home/kzennoun/data/inception_volumes/wordpress_database
       o: bind
       type: none
 

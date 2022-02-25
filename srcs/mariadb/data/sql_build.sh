@@ -13,7 +13,7 @@ service mysql start
 echo "print 2"
 mysql -u root < basics.sql
 echo "print 3"
-service mysql restart
+#service mysql restart
 echo "print 4"
 mysqladmin -u root password "$SQL_ROOTPASS"
 
